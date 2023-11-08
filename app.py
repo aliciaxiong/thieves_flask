@@ -3,8 +3,13 @@ import requests
 
 app = Flask(__name__)
 
-#HOME/LOGIN PAGE 
-
+#LOGIN PAGE 
+@app.route('/user/login', methods = ['GET', 'POST'])
+def user_login():
+    if request.method == 'POST': 
+            return "You have successfully logged in Pokemon Trainer"
+    else: 
+        return render_template('login.html')
 
 #POKEDEX PAGE  
 @app.route('/pokedex', methods=['GET', 'POST'])
