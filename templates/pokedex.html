@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+  <link rel="stylsheet" href="../static/styles/pokedex.css">
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+      <p> Enter Pokemon Name </p>
+      <div class="pokemon-form">
+        <label for="pokemonlabel" class="form-label">Pokemon Name</label>
+        <input type="text" class="form-control" id="pokemonLabel" name="pokemon_name" >
+        </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {{ all_pokemon }}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Pokemon</th>
+          <th scope="col">Ability</th>
+          <th scope="col">Base Exp</th>
+          <th scope="col">Att Stat</th>
+          <th scope="col">HP Stat </th>
+          <th scope="col">Def Stat</th>
+          <th scope="col">Sprite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{ poke['forms'][0]['name'] }} </th>
+          <td>Ability</td> {{ poke['abilities'][0]['ability']['name'] }}
+          <td>Base Exp</td> {{ poke['base_experience'] }}
+          <td>Att Stat</td> {{ poke['stats'][1]['base_stat'] }}
+          <td>HP Stat</td> {{ poke['stats'][0]['base_stat'] }}
+          <td>Def Stat</td> {{ poke['stats'][2]['base_stat'] }}
+          <td>Sprite</td> {{ poke['sprites']['front_shiny'] }}
+        </tr>
+      </tbody>
+    </table>
+  {% endblock %}
