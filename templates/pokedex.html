@@ -14,7 +14,7 @@
       <button type="submit" class="btn btn-primary">Search</button>
     </form>
 
-    {{ all_pokemon }}
+    {% if poke_dict %}
     <table class="table">
       <thead>
         <tr>
@@ -29,14 +29,15 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">{{ poke['forms'][0]['name'] }} </th>
-          <td>Ability</td> {{ poke['abilities'][0]['ability']['name'] }}
-          <td>Base Exp</td> {{ poke['base_experience'] }}
-          <td>Att Stat</td> {{ poke['stats'][1]['base_stat'] }}
-          <td>HP Stat</td> {{ poke['stats'][0]['base_stat'] }}
-          <td>Def Stat</td> {{ poke['stats'][2]['base_stat'] }}
-          <td>Sprite</td> {{ poke['sprites']['front_shiny'] }}
+          <th scope="row">{{ poke_dict['pokemon_name']}} </th>
+          <td>{{ poke_dict['ability_name'] }} </td> 
+          <td>{{ poke_dict['base_experience'] }}</td> 
+          <td>{{ poke_dict['attacj_base_experience'] }}</td> 
+          <td>{{ poke_dict['hp_base_stat'] }}</td> 
+          <td>{{ poke_dict['defense_base_stat'] }}</td> 
+          <td>{{ poke_dict['sprite'] }}</td> 
         </tr>
       </tbody>
     </table>
+    {%endif%}
   {% endblock %}
