@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 
 {% block styles %}
-  <link rel="stylsheet" href="../static/styles/pokedex.css">
+  <link rel="stylesheet" href="../static/pokedex.css">
+  
 {% endblock %}
 
 {% block content %}
     <form method="POST">
-      <p> Enter Pokemon Name </p>
+      <p class="EnterPokemonName"> Enter Pokemon Name </p>
       <div class="pokemon-form">
         <label for="pokemonlabel" class="form-label">Pokemon Name</label>
         <input type="text" class="form-control" id="pokemonLabel" name="pokemon_name" >
         </div>
-      <button type="submit" class="btn btn-primary">Search</button>
+      <button type="submit" class="btn btn-primary">Search Pokemon</button>
     </form>
 
     {% if poke_dict %}
@@ -32,12 +33,12 @@
           <th scope="row">{{ poke_dict['pokemon_name']}} </th>
           <td>{{ poke_dict['ability_name'] }} </td> 
           <td>{{ poke_dict['base_experience'] }}</td> 
-          <td>{{ poke_dict['attacj_base_experience'] }}</td> 
+          <td>{{ poke_dict['attack_base_stat'] }}</td> 
           <td>{{ poke_dict['hp_base_stat'] }}</td> 
           <td>{{ poke_dict['defense_base_stat'] }}</td> 
           <td>{{ poke_dict['sprite'] }}</td> 
         </tr>
       </tbody>
     </table>
-    {%endif%}
+    {% endif %}
   {% endblock %}

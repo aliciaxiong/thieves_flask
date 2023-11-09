@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Pokedex Home Page
+{% endblock %}
+
+{% block content %}
+    <h1>Pokemon Trainers</h1>
+    <h2>Please Login to Begin Your Journey</h2>
+    <img src="file:///Users/Alicia/Pictures/pokemon.png">
+    <form>
+        <div class="Input1">
+          <label for="LoginLabel" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="LoginLabel">
+        </div>
+        <div class="Input1">
+          <label for="PasswordLabel" class="form-label">Password</label>
+          <input type="password" class="form-control" id="LabelPassword">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+{% endblock %}
