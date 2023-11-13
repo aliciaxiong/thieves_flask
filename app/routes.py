@@ -4,7 +4,6 @@ from app import app
 from app.forms import LoginForm
 
 #HOME PAGE
-@app.route('/')
 @app.route('/home')
 def home(): 
     return render_template('home.html')
@@ -26,7 +25,7 @@ def login():
         password= form.password.data
 
         if email in REGISTERED_USERS and REGISTERED_USERS[email]['password'] == password:
-            return f'Hello Trainer, {REGISTERED_USERS[email]["name"]}'
+            return f'Welcome Trainer: {REGISTERED_USERS[email]["name"]}'
         else:
             return 'Incorrect Email or Password'
     else: 
