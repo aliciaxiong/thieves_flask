@@ -1,22 +1,26 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    Pokedex Home Page
+{% block styles %}
+    <link rel="stylesheet" href="../static/login.css">
 {% endblock %}
 
 {% block content %}
-    <h1>Pokemon Trainers</h1>
-    <h2>Please Login to Begin Your Journey</h2>
-    <img src="file:///Users/Alicia/Pictures/pokemon.png">
+    <h1 class="text-center">Pokemon Trainers</h1>
+    <h2 class="text-center">Please Login to Begin Your Journey</h2>
+    <img src="/app/photos/pokemon.png" alt="LoginPokemonPhoto">
+
     <form>
+      {{ form.hidden_tag() }}
         <div class="Input1">
           <label for="LoginLabel" class="form-label">Email Address</label>
-          <input type="email" class="form-control" id="LoginLabel">
+          {{ form.email(class="form-text", id="LoginLabel") }}
         </div>
+
         <div class="Input1">
           <label for="PasswordLabel" class="form-label">Password</label>
-          <input type="password" class="form-control" id="LabelPassword">
+          {{ form.password(class='form-control', id="PasswordLabel")}}
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-      </form>
+
+        {{ form.submit_button(class="btn btn-primary") }}
+    </form>
 {% endblock %}

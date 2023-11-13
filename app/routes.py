@@ -1,16 +1,36 @@
-from flask import request, render_template
+from flask import request, render_template, url_for, redirect, flash
 import requests
 from app import app 
+from app.forms import LoginForm
 
 #HOME PAGE
+@app.route('/')
 @app.route('/home')
 def home(): 
     return render_template('home.html')
 
+#FAKE DATABASE - TEMPORARY 
+REGISTERED_USERS = {
+    'alicia@thieves.com': {
+        'name': 'Alicia Xiong',
+        'password': 'Hello2'
+    }
+}
+
 #LOGIN PAGE
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        email= form.email.data
+        password= form.password.data
+
+        if email in REGISTERED_USERS and REGISTERED_USERS[email]['password'] == password:
+            return f'Hello Trainer, {REGISTERED_USERS[email]["name"]}'
+        else:
+            return 'Incorrect Email or Password'
+    else: 
+        return render_template('login.html', form=form)
 
 #POKEDEX PAGE  
 @app.route('/pokedex', methods=['GET', 'POST'])

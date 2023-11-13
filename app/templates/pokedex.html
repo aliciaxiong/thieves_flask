@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
 {% block styles %}
-  <link rel="stylesheet" href="../static/pokedex.css">
-  
+  <link rel="stylesheet" href="./static/pokedex.css">
 {% endblock %}
 
 {% block content %}
     <form method="POST">
-      <p class="EnterPokemonName"> Enter Pokemon Name </p>
+      <p class="EnterPokemonName"> Enter Pokemon Name or Number </p>
       <div class="pokemon-form">
         <label for="pokemonlabel" class="form-label">Pokemon Name</label>
         <input type="text" class="form-control" id="pokemonLabel" name="pokemon_name" >
@@ -41,4 +40,4 @@
       </tbody>
     </table>
     {% endif %}
-  {% endblock %}
+{% endblock %}
