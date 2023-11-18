@@ -5,39 +5,57 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST">
-      <p class="EnterPokemonName"> Enter Pokemon Name or Number </p>
-      <div class="pokemon-form">
-        <label for="pokemonlabel" class="form-label">Pokemon Name</label>
-        <input type="text" class="form-control" id="pokemonLabel" name="pokemon_name" >
-        </div>
-      <button type="submit" class="btn btn-primary">Search Pokemon</button>
-    </form>
+  <form class="poke_form" method="POST">
+    <p> Enter Pokemon Name or Number </p>
+    <div class="pokemon-form">
+      <input type="text" class="form-control" id="pokemonLabel" name="pokemon_name" >
+      </div>
+    <button type="submit" class="btn btn-primary">Search Pokemon</button>
+  </form>
 
-    {% if poke_dict %}
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Pokemon</th>
-          <th scope="col">Ability</th>
-          <th scope="col">Base Exp</th>
-          <th scope="col">Att Stat</th>
-          <th scope="col">HP Stat </th>
-          <th scope="col">Def Stat</th>
-          <th scope="col">Sprite</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">{{ poke_dict['pokemon_name']}} </th>
-          <td>{{ poke_dict['ability_name'] }} </td> 
-          <td>{{ poke_dict['base_experience'] }}</td> 
-          <td>{{ poke_dict['attack_base_stat'] }}</td> 
-          <td>{{ poke_dict['hp_base_stat'] }}</td> 
-          <td>{{ poke_dict['defense_base_stat'] }}</td> 
-          <td>{{ poke_dict['sprite'] }}</td> 
-        </tr>
-      </tbody>
-    </table>
-    {% endif %}
+  {% if poke_dict %}
+
+<div class="poke_table">
+  <table>
+    <tr>
+      <td>
+        <img class="pokemon_icon" src="{{ poke_dict['sprite'] }}">
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th scope="row" class="capitalize">{{ poke_dict['pokemon_name']}} </th>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th scope="col">Ability: </th>
+      <td>{{ poke_dict['ability_name'] }} </td> 
+    </tr>  
+  
+    <tr>
+      <th scope="col">Base Exp: </th>
+      <td>{{ poke_dict['base_experience'] }}</td> 
+    </tr>
+
+    <tr>
+      <th scope="col">Att Stat: </th>
+      <td>{{ poke_dict['attack_base_stat'] }}</td> 
+    </tr>
+
+    <tr>
+      <th scope="col">HP Stat: </th>
+      <td>{{ poke_dict['hp_base_stat'] }}</td> 
+    </tr>
+
+    <tr>
+      <th scope="col">Def Stat: </th>
+      <td>{{ poke_dict['defense_base_stat'] }}</td>
+    </tr>
+  </table>
+</div>
+  {% endif %}
 {% endblock %}

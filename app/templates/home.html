@@ -5,8 +5,6 @@
 {% endblock %}
 
 {%  block content %}
-    <h1>WELCOME POKEMON TRAINERS TO THE POKE-PEDIA</h1>
-{% endblock %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +12,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/home.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <title>Document</title>
 </head>
-<body>
-    
-
-</body>
-</html>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="nav_container">
+                  <a href="#"><img class="pokemon-logo" src="../static/photos/pokemon-logo.png"></a>
+                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                      <a class="nav_home" href="#">Home</a>   
+                      <a class="nav_pokepedia" href="#">Pokepedia</a>  
+                      <a class="nav_signup" href="#">Login</a>               
+                    </div>
+                  </div>
+                </div>
+              </nav>
+        </header>
+        <div class="home_container">
+            <img class="gengar" src="../static/photos/gengar-front.png">
+            <table class="pokeball-table">
+                <tr>
+                    <th class="pokeball-home"> <img src="../static/photos/pokemon-ball1.png"></th>
+                </tr>
+                <tr>
+                    <th class="journey">Your Pokemon Journey Awaits</th>
+                 </tr>
+            </table>
+        </div>
+    </body>
+    </html>
+{% endblock %}

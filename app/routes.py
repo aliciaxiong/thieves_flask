@@ -1,7 +1,7 @@
 from flask import request, render_template, url_for, redirect, flash
 import requests
 from app import app 
-from app.forms import LoginForm
+from app.forms import LoginForm, SignupForm
 
 #HOME PAGE
 @app.route('/home')
@@ -30,6 +30,25 @@ def login():
             return 'Incorrect Email or Password'
     else: 
         return render_template('login.html', form=form)
+    
+
+#SIGNUP PAGE
+@app.route('/signup', methods=['GET', 'POST'])
+def route(): 
+    form = SignupForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        full_name = f'{form.first_name.data} {form.last_name.data}'
+        email = form.email.data
+        password = form.password.data
+
+        REGISTERED_USERS[email] = {
+            'name': full_name,
+            'password': password
+        }
+        return f'{full_name}, you have been registered. '
+
+    else: 
+        return render_template('signup.html', form=form)
 
 #POKEDEX PAGE  
 @app.route('/pokedex', methods=['GET', 'POST'])
@@ -44,7 +63,7 @@ def get_pokemon_data():
             poke_dict = pokemon_data(data)
             return render_template('pokedex.html', poke_dict=poke_dict)
         except:
-            return 'Enter a Valid Pokemon'
+            return render_template('invalid.html')
     else: 
         return render_template('pokedex.html')
 
@@ -56,6 +75,6 @@ def pokemon_data(data):
             'attack_base_stat': data['stats'][1]['base_stat'],
             'hp_base_stat': data['stats'][0]['base_stat'],  
             'defense_base_stat': data['stats'][2]['base_stat'],  
-            'sprite': data['sprites']['front_shiny'] 
+            'sprite': data['sprites']['front_default'] 
         }
     return poke_dict

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="../static/signup.css">
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1 class="text-center">Registration Form</h1>
+
+    <form class="login-unit">
+      {{ form.hidden_tag() }}
+
+        <div class="Input1">
+          <label for="FirstnameLabel" class="form-label">First Name</label>
+          <br>
+          {{ form.first_name(class="form-control cus-input", id="fname") }}
+        </div>
+
+        <div class="Input1">
+            <label for="LastnameLabel" class="form-label"> Last Name </label>
+            <br>
+            {{ form.last_name(class="form-control cus-input", id="lname") }}
+          </div>
+          
+          <div class="Input1">
+            <label for="EmailLabel" class="form-label"> Email Address </label>
+            <br>
+            {{ form.email(class="form-control cus-input", id="emailaddress") }}
+          </div>
+
+        <div class="Input1">
+          <label for="PasswordLabel" class="form-label">Password </label>
+          <br>
+          {{ form.password(class='form-control cus-input', id="PasswordLabel")}}
+        </div>
+
+        <div class="Input1">
+            <label for="CPasswordLabel" class="form-label"> Confirm Password </label>
+            <br>
+            {{ form.confirm_password(class='form-control cus-input', id="CPasswordLabel")}}
+        </div>
+
+        {{ form.submit_button(class="btn-primary") }}
+      </form>
+</div>
+{% endblock %}

@@ -5,22 +5,27 @@
 {% endblock %}
 
 {% block content %}
+<div>
     <h1 class="text-center">Pokemon Trainers</h1>
     <h2 class="text-center">Please Login to Begin Your Journey</h2>
-    <img src="/app/photos/pokemon.png" alt="LoginPokemonPhoto">
 
-    <form>
+    <form class="login-unit">
       {{ form.hidden_tag() }}
         <div class="Input1">
-          <label for="LoginLabel" class="form-label">Email Address</label>
-          {{ form.email(class="form-text", id="LoginLabel") }}
+          <label for="LoginLabel" class="form-label">Email Address </label>
+          <br>
+          {{ form.email(class="form-control cus-input", id="LoginLabel") }}
         </div>
 
         <div class="Input1">
-          <label for="PasswordLabel" class="form-label">Password</label>
-          {{ form.password(class='form-control', id="PasswordLabel")}}
+          <label for="PasswordLabel" class="form-label">Password </label>
+          <br>
+          {{ form.password(class='form-control cus-input', id="PasswordLabel")}}
         </div>
 
-        {{ form.submit_button(class="btn btn-primary") }}
-    </form>
+        {{ form.submit_button(class="btn-primary") }}
+      </form>
+      <img class="login-logo" src="../static/photos/ghastly.png" alt="Login_PokemonPhoto">
+
+</div>
 {% endblock %}

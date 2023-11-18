@@ -1,12 +1,61 @@
 * {
+    font-family: 'Advent Pro', sans-serif;
     font-family: 'Jura', sans-serif;
     font-family: 'Roboto', sans-serif;
 }
     
 body{
     height: 100vh;
-    background: #B2FEFA;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #0ED2F7, #B2FEFA);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #0ED2F7, #B2FEFA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #42275a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #734b6d, #42275a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
 }
 
+.nav_container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pokemon-logo {
+    height: 120px;
+    width: 300px;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: x-large;
+}
+
+.navbar-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+
+
+.home_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.gengar {
+    margin-top: 10px;
+    margin-left: 350px;
+    width: 1000px;
+    height: 1000px;
+}
+
+table{
+    margin-left: -30px;
+    margin-top: -50px;
+}
+
+.journey {
+    font-size: 200%;
+    text-shadow: 0 0 20px rgb(224, 224, 224);
+}
