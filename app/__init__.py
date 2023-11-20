@@ -26,7 +26,7 @@ from app.blueprints.main import main
 #registering blueprints
 app.register_blueprint(auth)
 app.register_blueprint(main)
-
+                      
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
