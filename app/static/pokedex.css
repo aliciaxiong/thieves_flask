@@ -15,6 +15,31 @@ body{
     font-weight: bold;
 }
 
+.nav_container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pokemon-logo {
+    height: 120px;
+    width: 300px;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: x-large;
+}
+
+.navbar-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+
 .poke_form {
     display: flex;
     justify-content: center;
@@ -71,6 +96,7 @@ table, tr, td, th {
     margin-bottom: 20px
 }
 
+
 .pokemon_icon {
     width: 250px;
     height: 250px;
@@ -79,4 +105,15 @@ table, tr, td, th {
 .capitalize {
     text-transform: capitalize;
     font-size: xx-large;
+}
+
+.btn-primary {
+    width: 300px;
+    height: 40px;
+    font-size: large;
+    color: white;
+    background-color: black;
+    margin-top: 10px;
+    font-weight: bold;
+    box-shadow: #630054 0px 5px 10px;
 }

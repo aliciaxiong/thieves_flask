@@ -8,13 +8,42 @@
         background: #42275a;  /* fallback for old browsers */
         background: -webkit-linear-gradient(to bottom, #734b6d, #42275a);  /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to bottom, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: white;
     }
+
+    .nav_container {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .pokemon-logo {
+        height: 120px;
+        width: 300px;
+    }
+    
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: x-large;
+    }
+    
+    .navbar-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 20px;
+    }
+
+    .signup_form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+    }
+
 
     .text-center {
         margin-bottom: 50px;

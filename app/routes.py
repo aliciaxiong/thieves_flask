@@ -1,54 +1,63 @@
-from flask import request, render_template, url_for, redirect, flash
+from flask import request, render_template, redirect, url_for, flash
 import requests
 from app import app 
 from app.forms import LoginForm, SignupForm
+from app.models import User, db
+from werkzeug.security import check_password_hash
+from flask_login import login_user, logout_user, current_user, login_required
+
 
 #HOME PAGE
 @app.route('/home')
 def home(): 
     return render_template('home.html')
 
-#FAKE DATABASE - TEMPORARY 
-REGISTERED_USERS = {
-    'alicia@thieves.com': {
-        'name': 'Alicia Xiong',
-        'password': 'Hello2'
-    }
-}
-
 #LOGIN PAGE
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
-        email= form.email.data
-        password= form.password.data
+        email = form.email.data
+        password = form.password.data
 
-        if email in REGISTERED_USERS and REGISTERED_USERS[email]['password'] == password:
-            return f'Welcome Trainer: {REGISTERED_USERS[email]["name"]}'
+        queried_user = User.query.filter(User.email == email).first()
+        if queried_user and check_password_hash(queried_user.password, password):
+            login_user(queried_user)
+            flash(f'Welcome, {queried_user.first_name}!', 'success')
+            return redirect(url_for('home'))
         else:
-            return 'Incorrect Email or Password'
-    else: 
-        return render_template('login.html', form=form)
-    
+            return 'Please try again, email or password is invalid.'
+    else:
+            return render_template('login.html', form=form)
 
 #SIGNUP PAGE
 @app.route('/signup', methods=['GET', 'POST'])
 def route(): 
     form = SignupForm()
     if request.method == 'POST' and form.validate_on_submit():
-        full_name = f'{form.first_name.data} {form.last_name.data}'
+        first_name = form.first_name.data
+        last_name = form.last_name.data
         email = form.email.data
         password = form.password.data
 
-        REGISTERED_USERS[email] = {
-            'name': full_name,
-            'password': password
-        }
-        return f'{full_name}, you have been registered. '
+        user = User(first_name, last_name, email, password)
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash(f' Thank you {first_name}!', 'sucess')
+        return redirect(url_for('login'))
 
     else: 
         return render_template('signup.html', form=form)
+
+#LOGOUT PAGE 
+@app.route('/logout') 
+@login_required
+def logout():
+    flash('Successfully logged out, see you soon trainer!', 'warning')
+    logout_user()
+    return redirect(url_for('login'))
 
 #POKEDEX PAGE  
 @app.route('/pokedex', methods=['GET', 'POST'])

@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="login-table">
     <h1 class="text-center">Pokemon Trainers</h1>
     <h2 class="text-center">Please Login to Begin Your Journey</h2>
 
-    <form class="login-unit">
+    <form class="login-unit" method="POST">
       {{ form.hidden_tag() }}
         <div class="Input1">
           <label for="LoginLabel" class="form-label">Email Address </label>
@@ -24,7 +24,7 @@
         </div>
 
         {{ form.submit_button(class="btn-primary") }}
-      </form>
+    </form>
       <img class="login-logo" src="../static/photos/ghastly.png" alt="Login_PokemonPhoto">
 
 </div>
