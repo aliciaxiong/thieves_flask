@@ -28,6 +28,7 @@ body{
 }
 
 .navbar-nav {
+    text-decoration: none;
     display: flex;
     align-items: center;
     color: white;

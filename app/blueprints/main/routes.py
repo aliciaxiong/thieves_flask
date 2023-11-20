@@ -8,6 +8,10 @@ import requests
 def home(): 
     return render_template('home.html')
 
+@main.route('/team')
+def team():
+    return render_template('team.html')
+
 #POKEDEX PAGE  
 @main.route('/pokedex', methods=['GET', 'POST'])
 @login_required

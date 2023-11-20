@@ -24,12 +24,13 @@
     <nav class="navbar">
         <div class="nav_container">
           <a href="#"><img class="pokemon-logo" src="../static/photos/pokemon-logo.png"></a>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" id="navbarNavAltMarkup">
             {% if current_user.is_authenticated %}
               <li class="nav-item">
                 {{ current_user.first_name }}
                 <a class="nav_home" aria-current="page" href="{{ url_for('main.home') }}">Home</a>   
                 <a class="nav_pokepedia" href="{{ url_for('main.get_pokemon_data') }}">Pokepedia</a>
+                <a class="nav_pokepedia" href="{{ url_for('main.team') }}">Team</a>
                 <a class="btn btn-danger" href="{{ url_for('auth.logout') }}">Logout</a>
               </li>
             {%  else %}
