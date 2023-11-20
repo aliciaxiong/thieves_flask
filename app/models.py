@@ -19,3 +19,7 @@ class User(db.Model, UserMixin):
         self.last_name = last_name
         self.email = email
         self.password = generate_password_hash(password)
+
+# class Post(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+    

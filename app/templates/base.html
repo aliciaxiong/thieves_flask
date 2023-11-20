@@ -28,14 +28,15 @@
             {% if current_user.is_authenticated %}
               <li class="nav-item">
                 {{ current_user.first_name }}
-                <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
+                <a class="nav_home" aria-current="page" href="{{ url_for('main.home') }}">Home</a>   
+                <a class="nav_pokepedia" href="{{ url_for('main.get_pokemon_data') }}">Pokepedia</a>
+                <a class="btn btn-danger" href="{{ url_for('auth.logout') }}">Logout</a>
               </li>
-            {% endif %}
+            {%  else %}
             <div class="navbar-nav">
-              <a class="nav_home" aria-current="page" href="{{ url_for('home') }}">Home</a>   
-              <a class="nav_pokepedia" href="{{ url_for('get_pokemon_data') }}">Pokepedia</a>
-              <a class="nav__login" href="{{ url_for('login') }}">Login</a>            
-
+              <a class="nav__login" href="{{ url_for('auth.login') }}">Login</a>
+              <a class="nav__signup" href="{{ url_for('auth.signup') }}">Sign Up</a>         
+            {% endif %}     
             </div>
           </div>
         </div>
