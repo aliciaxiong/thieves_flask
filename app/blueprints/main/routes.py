@@ -4,7 +4,6 @@ from flask_login import login_required
 import requests
 
 #HOME PAGE
-@main.route('/')
 @main.route('/home')
 def home(): 
     return render_template('home.html')

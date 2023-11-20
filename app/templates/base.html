@@ -34,6 +34,7 @@
               </li>
             {%  else %}
             <div class="navbar-nav">
+              <a class="nav_home" aria-current="page" href="{{ url_for('main.home') }}">Home</a> 
               <a class="nav__login" href="{{ url_for('auth.login') }}">Login</a>
               <a class="nav__signup" href="{{ url_for('auth.signup') }}">Sign Up</a>         
             {% endif %}     

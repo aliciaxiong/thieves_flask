@@ -18,7 +18,7 @@ def login():
         if queried_user and check_password_hash(queried_user.password, password):
             login_user(queried_user)
             flash(f'Welcome, {queried_user.first_name}!', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('main.home'))
         else:
             return 'Please try again, email or password is invalid.'
     else:
