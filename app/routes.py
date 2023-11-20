@@ -45,7 +45,7 @@ def route():
         db.session.add(user)
         db.session.commit()
 
-        flash(f' Thank you {first_name}!', 'sucess')
+        flash(f' Thank you {first_name}!', 'success')
         return redirect(url_for('login'))
 
     else: 
