@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Battle
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='battle.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1> Battle </h1>
+    <div class="battle">
+        <div class="player">
+            <img src="{{ url_for('static', filename='sprites/' + player_pokemon + '.png') }}">
+            <div>
+                <h2>{{ player_pokemon }}</h2>
+                <p> {{ player_stats['type'] }} </p>
+                <p> {{ player_stats['hp'] }} </p>
+                <p> {{ player_stats['attack'] }} </p>
+                <p> {{ player_stats['defense'] }} </p>
+                <p> {{ player_stats['sp_attack'] }} </p>
+                <p> {{ player_stats['sp_defense'] }} </p>
+                <p> {{ player_stats['speed'] }} </p>
+            </div>
+        </div>
+        <div class="opponent">
+            <img src="{{ url_for('static', filename='sprites/' + opponent_pokemon + '.png') }}">
+            <div>
+                <h2>{{ opponent_pokemon }}</h2>
+                <p> {{ opponent_stats['type'] }} </p>
+                <p> {{ opponent_stats['hp'] }} </p>
+                <p> {{ opponent_stats['attack'] }} </p>
+                <p> {{ opponent_stats['defense'] }} </p>
+                <p> {{ opponent_stats['sp_attack'] }} </p>
+                <p> {{ opponent_stats['sp_defense'] }} </p>
+                <p> {{ opponent_stats['speed'] }} </p>
+            </div>
+        </div>
+        <div class="buttons">
+            <form>
+                <input type="submit" value="Attack" name="attack" class="attack">
+                <input type="hidden" value="{{ player_pokemon }}" name="player_pokemon">
+                <input type="hidden" value="{{ opponent_pokemon }}" name="opponent_pokemon">
+            </form>
+            <form>
+                <input type="submit" value="Switch" name="switch" class="switch">
+                <input type="hidden" value="{{ player_pokemon }}" name="player_pokemon">
+                <input type="hidden"
+{% endblock %}

@@ -23,7 +23,6 @@ login_manager.login_message_category = 'warning'
 from app.blueprints.auth import auth
 from app.blueprints.main import main
 
-
 #registering blueprints
 app.register_blueprint(auth)
 app.register_blueprint(main)

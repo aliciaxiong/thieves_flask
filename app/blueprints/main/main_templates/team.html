@@ -1,11 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    Home
-{% endblock %}
+<h1>
+    Pokemon Team
+</h1>
 
 {% block styles %}
     <link rel="stylesheet"
         type="text/css"
         href="{{ url_for('static', filename='team.css') }}">
 {% endblock %}
+
+{% block content %}
+    <h1> Pokemon Team</h1>
+    <div class="team">
+        {% for pokemon in team %}
+            <div class="team-member">
+                <img src="{{ pokemon['sprite'] }}" alt="{{ pokemon['pokemon_name'] }}">
+                <div class="team-member-info">
+                    <h2>{{ pokemon['pokemon_name'] }}</h2>
+                    <p>Ability: {{ pokemon['ability_name'] }}</p>
+                    <p>Base Exp: {{ pokemon['base_experience'] }}</p>
+                    <p>Att Stat: {{ pokemon['attack_base_stat'] }}</p>
+                    <p>HP Stat: {{ pokemon['hp_base_stat'] }}</p>
+                    <p>Def Stat: {{ pokemon['defense_base_stat'] }}</p>
+                </div>
+                <div>
+                    <form method="post" action="{{ url_for('main.remove') }}">
+                        <input type="hidden" name="pokemon_name" value="{{ pokemon['pokemon_name'] }}">
+                        <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

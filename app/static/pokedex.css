@@ -118,3 +118,24 @@ table, tr, td, th {
     font-weight: bold;
     box-shadow: #630054 0px 5px 10px;
 }
+
+.add_form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height:10vh;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.btn-secondary {
+    width: 300px;
+    height: 40px;
+    font-size: large;
+    color: white;
+    background-color: black;
+    margin-top: 10px;
+    font-weight: bold;
+    box-shadow: #630054 0px 5px 10px;
+}

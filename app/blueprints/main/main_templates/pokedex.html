@@ -57,5 +57,15 @@
     </tr>
   </table>
 </div>
+
+<div>
+<form class="add_form" method="POST" action="{{ url_for('main.add') }}">
+  <input type="hidden" name="pokemon_name" value="{{ poke_dict['pokemon_name'] }}">
+  <div>
+    <button class="btn-secondary" type="submit">Add to Team</button>
+  </div>
+</form>
+</div>
+
   {% endif %}
 {% endblock %}
