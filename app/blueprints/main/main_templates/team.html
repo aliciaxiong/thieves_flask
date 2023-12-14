@@ -14,23 +14,22 @@
     <h1> Pokemon Team</h1>
     <div class="team">
         {% for pokemon in team %}
-            <div class="team-member">
-                <img src="{{ pokemon['sprite'] }}" alt="{{ pokemon['pokemon_name'] }}">
-                <div class="team-member-info">
-                    <h2>{{ pokemon['pokemon_name'] }}</h2>
-                    <p>Ability: {{ pokemon['ability_name'] }}</p>
-                    <p>Base Exp: {{ pokemon['base_experience'] }}</p>
-                    <p>Att Stat: {{ pokemon['attack_base_stat'] }}</p>
-                    <p>HP Stat: {{ pokemon['hp_base_stat'] }}</p>
-                    <p>Def Stat: {{ pokemon['defense_base_stat'] }}</p>
-                </div>
-                <div>
-                    <form method="post" action="{{ url_for('main.remove') }}">
-                        <input type="hidden" name="pokemon_name" value="{{ pokemon['pokemon_name'] }}">
-                        <button type="submit" class="remove-btn">Remove</button>
-                    </form>
-                </div>
-            </div>
+        <div class="pokemon_team">
+            <table>
+                <h2>{{ pokemon.name }}</h2>
+                <img src="{{ pokemon.sprite }}"/>
+                <p>{{ pokemon.pokemon_name }}</p>
+                <p>Abi: {{ pokemon.ability_name }}</p>
+                <p>Exp: {{ pokemon.base_experience }}</p>
+                <p>Att: {{ pokemon.attack_base_stat }}</p>
+                <p>Def: {{ pokemon.defense_base_stat }}</p>
+                <p>HP: {{ pokemon.hp_base_stat }}</p>
+                <form action="{{ url_for('main.remove') }}" method="post">
+                    <input type="hidden" name="pokemon_name" value="{{ pokemon.pokemon_name }}">
+                    <button class="remove_button" type="submit" class="remove-button">Remove</button>
+                  </form>
+            </table>
+        </div>
         {% endfor %}
     </div>
 {% endblock %}

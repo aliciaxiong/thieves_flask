@@ -1,7 +1,8 @@
 from app.blueprints.main import main
 from flask import render_template, request, session, url_for, redirect
-from flask_login import login_required
+from flask_login import login_required, current_user
 import requests
+
 
 #HOME PAGE
 @main.route('/home')
@@ -22,7 +23,12 @@ def get_pokemon_data():
             poke_dict = pokemon_data(data)
             if 'team' not in session: 
                 session['team'] = []
-            session['team'].append(poke_dict)
+
+            user_team = f'team_{current_user.id}'
+            if user_team not in session:
+                session[user_team] = []
+
+            session[user_team].append(poke_dict)
             return render_template('pokedex.html', poke_dict=poke_dict)
         except:
             return render_template('invalid.html')
@@ -45,7 +51,8 @@ def pokemon_data(data):
 @main.route('/team')
 @login_required
 def team():
-    team = session.get('team', [])
+    user_team = f'team_{current_user.id}'
+    team = session.get(user_team, [])
     return render_template('team.html', team=team)
 
 #Adding a Pokemon to the Team
@@ -53,21 +60,23 @@ def team():
 @login_required
 def add():
     pokemon_name = request.form.get('pokemon_name')
-    print(f"adding pokemon: {pokemon_name}")
     url = f'https://pokeapi.co/api/v2/pokemon/{pokemon_name}'
     response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        poke_dict = pokemon_data(data)
+        user_team = f'team_{current_user.id}'
 
-    if not response.ok:
-        return render_template('invalid.html')
-    
-    data = response.json()
-    poke_dict = pokemon_data(data)
+        if user_team not in session:
+            session[user_team] = []
 
-    if 'team' not in session: 
-        session['team'] = []
-
-    session['team'].append(poke_dict)
-    return redirect(url_for('main.team'))
+        if len(session[user_team]) >= 6:
+            return "Team is full"
+        session[user_team].append(poke_dict)
+        session.modified = True
+        return redirect(url_for('main.team'))
+    else:
+        return "Error: Pokemon not found"
 
 
 #Pokemon Battle Page 
@@ -81,10 +90,7 @@ def battle():
 @login_required
 def remove():
     pokemon_name = request.form.get('pokemon_name')
-    team = session.get('team', [])
-    for pokemon in team: 
-        if pokemon['pokemon_name'] == pokemon_name: 
-            team.remove(pokemon)
-            session['team'] = team
-            break
+    user_team = f'team_{current_user.id}'
+    session[user_team] = [pokemon for pokemon in session[user_team] if pokemon['pokemon_name'] != pokemon_name]
+    session.modified = True
     return redirect(url_for('main.team'))

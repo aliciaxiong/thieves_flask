@@ -59,12 +59,10 @@
 </div>
 
 <div>
-<form class="add_form" method="POST" action="{{ url_for('main.add') }}">
-  <input type="hidden" name="pokemon_name" value="{{ poke_dict['pokemon_name'] }}">
-  <div>
+  <form class="add_form" method="POST" action="{{ url_for('main.add') }}">
+    <input type="hidden" name="pokemon_name" value="{{ poke_dict['pokemon_name'] }}">
     <button class="btn-secondary" type="submit">Add to Team</button>
-  </div>
-</form>
+  </form>
 </div>
 
   {% endif %}
