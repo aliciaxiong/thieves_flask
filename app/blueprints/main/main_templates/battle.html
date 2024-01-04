@@ -12,31 +12,12 @@
 
 
 {% block content %}
-    <h1>Your Team</h1>
-    {% for pokemon in user_team %}
-        <div class="pokemon">
-            <h2>{{ pokemon['pokemon_name'] }}</h2>
-            <img src="{{ pokemon['image_url'] }}" alt="{{ pokemon['pokemon_name'] }}">
-            <p>HP: {{ pokemon['hp'] }}</p>
-            <p>Attack: {{ pokemon['attack'] }}</p>
-            <p>Defense: {{ pokemon['defense'] }}</p>
-            <p>Speed: {{ pokemon['speed'] }}</p>
-        </div>
-    {% endfor %}
-
-    <h1>Opponent's Team</h1>
-    {% for pokemon in opponent_team %}
-        <div class="pokemon">
-            <h2>{{ pokemon['pokemon_name'] }}</h2>
-            <img src="{{ pokemon['image_url'] }}" alt="{{ pokemon['pokemon_name'] }}">
-            <p>HP: {{ pokemon['hp'] }}</p>
-            <p>Attack: {{ pokemon['attack'] }}</p>
-            <p>Defense: {{ pokemon['defense'] }}</p>
-            <p>Speed: {{ pokemon['speed'] }}</p>
-        </div>
-    {% endfor %}
-
-    <form method="POST" action="{{ url_for('main.battle') }}">
-        <input type="submit" value="BATTLE">
-    </form>
+    <div class="battleresults">
+        <h1>Battle Results</h1>
+        {% if winner == 'Draw' %}
+            <p>The battle was a draw!</p>
+        {% else %}
+            <p>{{ winner }} won the battle!</p>
+        {% endif %}
+    </div>
 {% endblock %}
