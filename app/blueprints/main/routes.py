@@ -1,8 +1,8 @@
 from app.blueprints.main import main
-from flask import render_template, request, session, url_for, redirect
+from flask import render_template, request, session, url_for, redirect, flash
 from flask_login import login_required, current_user
 import requests
-
+from app.models import User
 
 #HOME PAGE
 @main.route('/home')
@@ -78,13 +78,6 @@ def add():
     else:
         return "Error: Pokemon not found"
 
-
-#Pokemon Battle Page 
-@main.route('/battle')
-@login_required
-def battle():
-    return render_template('battle.html')
-
 #Removing a pokemon from the team 
 @main.route('/remove', methods=['POST'])
 @login_required
@@ -94,3 +87,47 @@ def remove():
     session[user_team] = [pokemon for pokemon in session[user_team] if pokemon['pokemon_name'] != pokemon_name]
     session.modified = True
     return redirect(url_for('main.team'))
+
+
+#Creating a route to be able to search for another user to battle: 
+@main.route('/search_user', methods=['GET', 'POST'])
+@login_required
+def search_user():
+    user = None
+    pokemon_team = None
+    if request.method == 'POST':
+        id = request.form.get('userid')
+        user = User.query.get(id)
+        if user: 
+            pokemon_team_k = f'team+{user.id}'
+            pokemon_team = session.get(pokemon_team_k, [])
+            session['opp_id'] = user.id
+        else:
+            flash('User not found')
+    return render_template('search_user.html', user=user, pokemon_team=pokemon_team)
+
+#Pokemon Battle Page 
+@main.route('/battle', methods=['POST'])
+@login_required
+def battle():
+    # Retrieve the teams from the session
+    user_team_key = f'team_{current_user.id}'
+    user_team = session.get(user_team_key, [])
+    opp_id = session.get('opp_id')
+    opp_team_key = f'team_{opp_id}'
+    opp_team = session.get(opp_team_key, [])
+
+    # Calculate the total stats for each team
+    user_total_stats = sum(pokemon['base_experience'] for pokemon in user_team)
+    opp_total_stats = sum(pokemon['base_experience'] for pokemon in opp_team)
+
+    # Determine the winner
+    if opp_total_stats > user_total_stats:
+        winner = 'Opponent'
+    elif user_total_stats > opp_total_stats:
+        winner = 'You'
+    else:
+        winner = 'Draw'
+
+    # Render the battle results
+    return render_template('battle.html', winner=winner)

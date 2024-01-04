@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='search_user.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Battle</h1>
+    <form method="POST" >
+        <input type="text" name="userid" placeholder="Enter user ID">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if user %}
+        <div>
+            <p>Trainer: {{ user.first_name }} {{ user.last_name }}</p>
+            <p>Pokemon Team:</p>
+                <ul>
+                    {% for pokemon in user.pokemon_team %}
+                        <img src="{{ pokemon.sprite }}"/>
+                        <p>{{ pokemon.pokemon_name }}</p>
+                        <p>Abi: {{ pokemon.ability_name }}</p>
+                        <p>Exp: {{ pokemon.base_experience }}</p>
+                        <p>Att: {{ pokemon.attack_base_stat }}</p>
+                        <p>Def: {{ pokemon.defense_base_stat }}</p>
+                        <p>HP: {{ pokemon.hp_base_stat }}</p>
+                    {% endfor %}    
+                </ul>
+                <form action="{{ url_for('main.battle') }}" method="post">
+                    <button type="submit">BATTLE</button>
+                </form>
+        </div>
+    {% endif %}
+
+{% endblock %}

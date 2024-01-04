@@ -31,6 +31,7 @@
                 <a class="nav_home" aria-current="page" href="{{ url_for('main.home') }}">Home</a>   
                 <a class="nav_pokepedia" href="{{ url_for('main.get_pokemon_data') }}">Pokepedia</a>
                 <a class="nav_pokepedia" href="{{ url_for('main.team') }}">Team</a>
+                <a class="nav_pokepedia" href="{{ url_for('main.search_user') }}">Battle</a>
                 <a class="btn btn-danger" href="{{ url_for('auth.logout') }}">Logout</a>
               </li>
             {%  else %}
